@@ -7,4 +7,4 @@ function afficher_footer($texte)
     echo "</div>";
 }
 
-afficher_footer(" © 2023 Best Bid's ");
+afficher_footer(" © Copyright 2023 Best Bid's ");
