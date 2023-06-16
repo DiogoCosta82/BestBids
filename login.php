@@ -16,6 +16,7 @@ function Login($email, $password)
 
   // Vérifier les informations de connexion
   try {
+
     $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
     $query = $dbh->prepare('SELECT * FROM user WHERE `email` = :email AND `password` = :password');
     $query->execute(array(':email' => $email, ':password' => $password));
@@ -53,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="Style/style.css" />
-    <title>Best Bid's - Login</title>
+  <link rel="stylesheet" href="Style/style.css" />
+  <title>Best Bid's - Login</title>
 </head>
 
 <body>
 
-    <header>
-        <?php
+  <header>
+    <?php
     include __DIR__ . '/Nav/menu.php';
 
     $menu_liens = [
@@ -70,30 +71,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     afficher_menu("", $menu_liens);
     ?>
-    </header>
+  </header>
 
 
 
-    <form action="login.php" method="POST">
+  <form action="login.php" method="POST">
 
-        <h2>Connexion</h2>
+    <h2>Connexion</h2>
 
-        <label class="labelLogin">Email :</label><br />
-        <input name="email" type="texte"></input><br />
-        <label class="labelLogin">Mot de passe :</label><br />
-        <input name="password" type="password"></input>
-        <button class="buttonLogin">valider</button>
+    <label class="labelLogin">Email :</label><br />
+    <input name="email" type="texte"></input><br />
+    <label class="labelLogin">Mot de passe :</label><br />
+    <input name="password" type="password"></input>
+    <button class="buttonLogin">valider</button>
 
-    </form>
-    <?php
+  </form>
+  <?php
   // Vérifier si un message d'erreur est présent dans l'URL
   if (isset($_GET["error"]) && $_GET["error"] == 1) {
     echo '<p class="error">Erreur lors de la connexion ! Veuillez vérifier vos informations !</p>';
   }
   ?>
-    <footer>
-        <?php include 'Nav/footer.php'; ?>
-    </footer>
+  <footer>
+    <?php include 'Nav/footer.php'; ?>
+  </footer>
 </body>
 
 </html>
