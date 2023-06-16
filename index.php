@@ -27,10 +27,16 @@
 
 
     <?php
+    try {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+    } catch (Exception $e2) {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
 
 
-    $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
 
+        $query = "SELECT * FROM auctions";
+        $results = $dbh->query($query);
+    }
 
     $query = "SELECT * FROM auctions";
     $results = $dbh->query($query);
