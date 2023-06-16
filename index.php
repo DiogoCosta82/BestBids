@@ -16,8 +16,8 @@
 
 
         $menu_liens = [
-            '/encheres/login2.php' => 'Inscription',
-            '/encheres/login.php' => 'Connexion',
+            '/BestBids/login2.php' => 'Inscription',
+            '/BestBids/login.php' => 'Connexion',
 
         ];
 
