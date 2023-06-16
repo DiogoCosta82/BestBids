@@ -1,5 +1,5 @@
 <?php
-class auctions
+class Auctions
 {
 
     protected $title;
@@ -39,7 +39,7 @@ class auctions
         $this->end_date = $end_date;
 
     }
-    public function displayProduct()
+    public function displayAuctions()
     {
         echo "<h1> Votre Annonce:</h1>";
         echo "<div class=\"result\">";

@@ -1,4 +1,9 @@
+<?php
+require_once __DIR__ . "/auctions/auctions.php";
+?>
+
 <body>
+
     <div class="bodyPage"></div>
 
     <form action="auctions.php" method="POST">
@@ -63,4 +68,39 @@
 
         <button class="send"> valider </button>
     </form>
+    <?php
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $myAuction = new Auctions(
+
+
+            $_POST["title"],
+            $_POST["image_href"],
+            $_POST["reserve_price"],
+            $_POST["brand"],
+            $_POST["model"],
+            $_POST["hp"],
+            $_POST["year"],
+            $_POST["color"],
+            $_POST["doors"],
+            $_POST["place"],
+            $_POST["fuel"],
+            $_POST["kms"],
+            $_POST["description"],
+            $_POST["create_date"],
+            $_POST["updated_date"],
+            $_POST["end_date"]
+
+        );
+
+        $myAuction->displayAuctions();
+
+
+
+    } else {
+        echo "<h1>Valider</h1>";
+    }
+    ?>
 </body>
