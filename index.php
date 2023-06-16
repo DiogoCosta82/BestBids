@@ -16,8 +16,8 @@
 
 
         $menu_liens = [
-            '/php/Guichet/index.php' => 'Inscription',
-            '/php/encheres/login.php' => 'Connexion',
+            ' /BestBids/index.php' => 'Inscription',
+            '/BestBids/login.php' => 'Connexion',
 
         ];
 
@@ -29,7 +29,7 @@
     <?php
 
 
-    $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+    $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
 
 
     $query = "SELECT * FROM auctions";
