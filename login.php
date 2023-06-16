@@ -1,5 +1,4 @@
 <?php
-require_once(__DIR__ . '/signIn.class.php');
 
 // Fonction de LOGIN
 function Login($email, $password)
@@ -16,7 +15,9 @@ function Login($email, $password)
 
   // Vérifier les informations de connexion
   try {
+
     $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+
     $query = $dbh->prepare('SELECT * FROM user WHERE `email` = :email AND `password` = :password');
     $query->execute(array(':email' => $email, ':password' => $password));
     $results = $query->fetch(); // Récupération des données
@@ -45,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
 
   // Appeler la fonction SignIn avec les données de connexion
-  SignIn($email, $password);
+  Login($email, $password);
 }
 ?>
 
@@ -72,12 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
   </header>
 
-  <?php
-  // Vérifier si un message d'erreur est présent dans l'URL
-  if (isset($_GET["error"]) && $_GET["error"] == 1) {
-    echo '<p class="error">Erreur lors de la connexion ! Veuillez vérifier vos informations !</p>';
-  }
-  ?>
+
 
   <form action="login.php" method="POST">
 
@@ -89,6 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input name="password" type="password"></input>
     <button class="buttonLogin">valider</button>
   </form>
+  <br>
+  <?php
+  // Vérifier si un message d'erreur est présent dans l'URL
+  if (isset($_GET["error"]) && $_GET["error"] == 1) {
+    echo '<p class="error">Erreur lors de la connexion ! Veuillez vérifier vos informations !</p>';
+  }
+  ?>
 
   <footer>
     <?php include 'Nav/footer.php'; ?>
