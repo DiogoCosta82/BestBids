@@ -77,7 +77,7 @@ require_once __DIR__ . "/auctions/auctions.php";
 
 
             $_POST["title"],
-            $_POST["image_href"],
+            $_POST["image_href"], // faire différent des autres
             $_POST["reserve_price"],
             $_POST["brand"],
             $_POST["model"],
