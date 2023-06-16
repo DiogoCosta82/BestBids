@@ -9,7 +9,8 @@ body {
 
 .nav1 {
   display: flex;
-  width: 100%;
+  justify-content: center;
+  width: 100vw;
   height: 97px;
   background-color: black;
   gap: 80px;
@@ -17,6 +18,7 @@ body {
 
 .btnNav {
   display: flex;
+  justify-content: center;
   gap: 15px;
   margin-right: 20px;
 }
@@ -52,11 +54,10 @@ a {
 }
 
 .logo {
-  width: 5vw;
-
+  width: 6rem;
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left: 0vh;
+  top: 0vh;
 }
 
 h1 {

@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/style.css" />
     <title>Best Bid's</title>
@@ -16,7 +15,7 @@
 
 
         $menu_liens = [
-            ' /BestBids/index.php' => 'Inscription',
+            '/BestBids/inscription.php' => 'Inscription',
             '/BestBids/login.php' => 'Connexion',
 
         ];
@@ -25,22 +24,15 @@
         ?>
     </header>
 
-
     <?php
+
     try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
     } catch (Exception $e2) {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-
-
-
         $query = "SELECT * FROM auctions";
         $results = $dbh->query($query);
     }
-
-    $query = "SELECT * FROM auctions";
-    $results = $dbh->query($query);
-
 
     echo "<h1>Annonces en ligne</h1>";
     echo "<table>";
@@ -66,10 +58,7 @@
     }
     echo "</table>";
 
-
-
     include 'Nav/footer.php'; ?>
-
 
 </body>
 
