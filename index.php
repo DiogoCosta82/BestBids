@@ -16,8 +16,8 @@
 
 
         $menu_liens = [
-            '/php/Guichet/index.php' => 'Inscription',
-            '/php/encheres/login.php' => 'Connexion',
+            '/encheres/login2.php' => 'Inscription',
+            '/encheres/login.php' => 'Connexion',
 
         ];
 

@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include __DIR__ . '/Nav/menu.php';
 
     $menu_liens = [
-      '/php/encheres/index.php' => 'Accueil',
+      '/encheres/index.php' => 'Accueil',
 
     ];
 
