@@ -6,7 +6,7 @@ class LoginClass
   {
     // Vérifier si l'utilisateur est déjà connecté
     session_start();
-    if (isset($_SESSION["user"])) {
+    if (isset($_SESSION["newUser"])) {
       // Rediriger vers la page d'accueil
       header("Location: annonce_affiche.php");
       exit;
@@ -25,7 +25,7 @@ class LoginClass
 
       if ($results) {
         // Stocker les données de l'utilisateur dans la session
-        $_SESSION["user"] = $results;
+        $_SESSION["newUser"] = $results;
         // Rediriger vers la page utilisateur connecté
         header("Location: annonce_affiche.php");
         exit;

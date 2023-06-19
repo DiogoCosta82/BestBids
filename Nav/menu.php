@@ -11,7 +11,7 @@ function afficher_menu($nom, $liens)
 
     foreach ($liens as $lien => $texte) {
         // Vérifier si l'utilisateur est connecté
-        $estConnecte = isset($_SESSION["user"]);
+        $estConnecte = isset($_SESSION["newUser"]);
 
         // Si le lien est pour la page de connexion et l'utilisateur est déjà connecté, afficher le bouton déconnexion
         if ($lien === "/BestBids/login.php" && $estConnecte) {
