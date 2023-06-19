@@ -8,7 +8,7 @@ class LoginClass
     session_start();
     if (isset($_SESSION["user"])) {
       // Rediriger vers la page d'accueil
-      header("Location: index.php");
+      header("Location: annonce_affiche.php");
       exit;
     }
 
@@ -27,7 +27,7 @@ class LoginClass
         // Stocker les données de l'utilisateur dans la session
         $_SESSION["user"] = $results;
         // Rediriger vers la page utilisateur connecté
-        header("Location: index.php");
+        header("Location: annonce_affiche.php");
         exit;
       } else {
         // Rediriger vers la page de connexion avec un message d'erreur

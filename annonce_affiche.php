@@ -15,9 +15,8 @@
         include __DIR__ . '/Nav/menu.php';
 
         $menu_liens = [
-            '/BestBids/inscription.php' => 'Inscription',
             '/BestBids/annonce.php' => 'Déposer Annonce',
-            '/BestBids/login.php' => 'Connexion',
+            '/BestBids/logout.php' => 'Déconnexion',
 
 
         ];
@@ -28,6 +27,7 @@
 
     <main>
         <?php
+
         // Afficher la roue loading
         echo "<div class=\"loading-overlay\">";
         echo "<div class=\"loading-spinner\"></div>";
@@ -51,7 +51,7 @@
             }
 
             // Récupération des annonces
-            $query = "SELECT * FROM auctions LIMIT 4";
+            $query = "SELECT * FROM auctions";
             $results = $dbh->query($query);
 
             // Affichage des annonces
@@ -66,9 +66,9 @@
                 echo "</div>";
             }
             echo "</div>";
-        } catch (PDOException $e) {
+        } catch (PDOException $e1) {
             // Gérer les erreurs de connexion à la bd
-            echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e1->getMessage();
         }
         ?>
     </main>
