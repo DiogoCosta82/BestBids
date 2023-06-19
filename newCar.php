@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/Class/car.class.php';
+require_once __DIR__ . '/Class/newCar.class.php';
+require_once __DIR__ . '/annonce.php';
 require_once __DIR__ . '/index.php';
 
 
@@ -22,7 +23,7 @@ try {
     // Connexion bd
     try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-    } catch (Exception $e2) {
+    } catch (Exception $e) {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
     }
 } catch (PDOException $e) {
@@ -58,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 try {
-    //AJOUT d'une annonce voiture - connexion avec la database
+    //AJOUT d'une annonce - connexion avec la db
     $query = $dbh->prepare("INSERT INTO `auctions` (`title`, `image_href`, `reserve_price`, `brand`,`model`, `hp`, `year`, `color`, `doors`, `places`, `fuel`, `kms`, `description`, `creted_date`, `updated_date`, `end_date`) 
-                            VALUES (:title, :image_href, :reserve_price, :brand, :model, :hp, :year, :color, :doors, :places, :fuel, :kms, description, :creted_date, :updated_date, :end_date)");
+                            VALUES (:title, :image_href, :reserve_price, :brand, :model, :hp, :year, :color, :doors, :places, :fuel, :kms, description, NOW(), NOW(), :end_date)");
     $query->bindValue(":title", $_POST["title"]);
     $query->bindValue(":image_href", $_POST["image_href"]);
     $query->bindValue(":reserve_price", $_POST["reserve_price"]);

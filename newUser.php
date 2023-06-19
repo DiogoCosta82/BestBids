@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 try {
-    // AJOUT d'un USER - connexion avec la database
+    // AJOUT d'un USER - connexion avec la db
     $query = $dbh->prepare("INSERT INTO `user` (`last_name`, `first_name`,`email`,password, `created_date`) VALUES (:last_name, :first_name, :email, :password, NOW())");
     $query->bindValue(":last_name", $_POST["last_name"]);
     $query->bindValue(":first_name", $_POST["first_name"]);

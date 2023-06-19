@@ -46,7 +46,7 @@
             // Connexion bd
             try {
                 $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-            } catch (Exception $e2) {
+            } catch (Exception $e1) {
                 $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
             }
 

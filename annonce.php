@@ -10,7 +10,8 @@
 </head>
 
 <?php
-require_once __DIR__ . "/newCar.php";
+require_once __DIR__ . "/Class/newCar.class.php";
+require_once __DIR__ . "/index.php";
 ?>
 
 <body>
@@ -31,7 +32,7 @@ require_once __DIR__ . "/newCar.php";
 
         <div class="bodyPage"></div>
 
-        <form action="newCar.php" method="POST">
+        <form action="annonce.php" method="POST">
 
             <h2>Deposer votre annonce</h2>
 
@@ -91,7 +92,7 @@ require_once __DIR__ . "/newCar.php";
             <textarea name="description" type="text">
         </textarea><br>
 
-            <button class="send"> valider </button>
+            <button class="send">Valider</button>
         </form>
         <?php
 
