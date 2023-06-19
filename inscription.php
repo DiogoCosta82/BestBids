@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/style.css" />
+    <link rel="stylesheet" href="Style/inscription_style.css" />
     <title>Best Bid's - Création de Compte</title>
 </head>
 
@@ -24,30 +25,26 @@
         ?>
     </header>
 
+    <div class="container">
+        <div class="card">
+            <h2>Créer un compte utilisateur</h2>
+            <form action="newUser.php" method="POST">
+                <label class="label">Nom</label>
+                <input name="last_name" type="text" required><br>
 
-    <div class="formNew"></div>
-    <form action="newUser.php" method="POST">
+                <label class="label">Prénom</label>
+                <input name="first_name" type="text" required><br>
 
-        <h2>Créer un compte utilisateur</h2>
+                <label class="label">Adresse email</label>
+                <input name="email" type="text" required><br>
 
-        <label class="label">Nom :</label>
-        <input name="last_name" type="text"></input><br>
+                <label class="label">Mot de passe</label>
+                <input name="password" type="password" required><br>
 
-        <label class="label">Prénom :</label>
-
-        <input name="first_name" type="texte"></input><br>
-
-        <label class="label">Adresse email :</label>
-
-        <input name="email" type="texte"> </input><br>
-
-        <label class="label">Mot de passe :</label>
-
-        <input name="password" type="password"></input><br>
-
-        <button class="buttonFormNew">Valider</button>
-    </form>
-
+                <button class="buttonFormNew">Valider</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <?php include 'Nav/footer.php'; ?>

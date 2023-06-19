@@ -10,7 +10,7 @@
 </head>
 
 <?php
-require_once __DIR__ . "/auctions/auctions.php";
+require_once __DIR__ . "/newCar.php";
 ?>
 
 <body>
@@ -22,28 +22,16 @@ require_once __DIR__ . "/auctions/auctions.php";
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Style/style.css" />
+        <link rel="stylesheet" href="Style/annonce_style.css" />
+
         <title>Best Bid's - Page annonces</title>
     </head>
 
     <body>
-        <header>
-            <?php
-            include __DIR__ . '/Nav/menu.php';
-
-
-            $menu_liens = [
-                '/BestBids/index.php' => 'Accueil',
-                '/BestBids/logout.php' => 'Déconnexion',
-
-            ];
-
-            afficher_menu("", $menu_liens);
-            ?>
-        </header>
 
         <div class="bodyPage"></div>
 
-        <form action="auctions.php" method="POST">
+        <form action="newCar.php" method="POST">
 
             <h2>Deposer votre annonce</h2>
 
@@ -107,38 +95,6 @@ require_once __DIR__ . "/auctions/auctions.php";
         </form>
         <?php
 
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            $myAuction = new Auctions(
-
-
-                $_POST["title"],
-                $_POST["image_href"], // faire différent des autres
-                $_POST["reserve_price"],
-                $_POST["brand"],
-                $_POST["model"],
-                $_POST["hp"],
-                $_POST["year"],
-                $_POST["color"],
-                $_POST["doors"],
-                $_POST["place"],
-                $_POST["fuel"],
-                $_POST["kms"],
-                $_POST["description"],
-                $_POST["create_date"],
-                $_POST["updated_date"],
-                $_POST["end_date"]
-
-            );
-
-            $myAuction->displayAuctions();
-
-
-
-        } else {
-            echo "<h1>Valider</h1>";
-        }
         ?>
     </body>
 

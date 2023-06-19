@@ -1,12 +1,12 @@
 <?php
-require_once(__DIR__ . '/Class/newUser.class.php');
-require_once(__DIR__ . '/inscription.php');
+require_once __DIR__ . '/Class/newUser.class.php';
+require_once __DIR__ . '/inscription.php';
 
 try {
     try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
     } catch (Exception $e) {
-        $bdh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
     }
 } catch (PDOException $e) {
     echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
@@ -14,12 +14,12 @@ try {
 }
 
 
-// POST sur formulaire compte
+// POST sur formulaire inscription
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Je récupère les informations et je crée l'instance 
-    $user = new user(
+    $user = new newUser(
         $_POST["last_name"],
-        $_POST["first_name"], // Ajout du nom des clés correspondantes pour chaque propriété du compte
+        $_POST["first_name"],
         $_POST["email"],
         $_POST["password"],
     );
@@ -36,8 +36,8 @@ try {
 
     $results = $query->fetchAll();
 
-    echo "<br><p class= \"result\">La création du compte utilisateur a été effectuée avec succès.</p><br><br>"; // a voir pour utiliser une alertBox
-    header("Location: annonce.class.php");
+    echo "<script>alert('La création du compte utilisateur a été effectuée avec succès.');</script>";
+    echo "<script>setTimeout(function() {window.location.href = 'index.php';});</script>";
 } catch (PDOException $e) {
     echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
 }

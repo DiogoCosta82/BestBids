@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/style.css" />
     <title>Best Bid's</title>
+
 </head>
 
 <body>
@@ -13,10 +14,11 @@
         <?php
         include __DIR__ . '/Nav/menu.php';
 
-
         $menu_liens = [
             '/BestBids/inscription.php' => 'Inscription',
+            '/BestBids/annonce.php' => 'Déposer Annonce',
             '/BestBids/login.php' => 'Connexion',
+
 
         ];
 
@@ -24,42 +26,54 @@
         ?>
     </header>
 
-    <?php
+    <main>
+        <?php
+        // Afficher la roue loading
+        echo "<div class=\"loading-overlay\">";
+        echo "<div class=\"loading-spinner\"></div>";
+        echo "</div>";
+        ?>
 
-    try {
-        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-    } catch (Exception $e2) {
-        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-        $query = "SELECT * FROM auctions";
-        $results = $dbh->query($query);
-    }
+        <script>
+            // Cacher la roue après un délai de 2000ms
+            setTimeout(function() {
+                document.querySelector('.loading-overlay').style.display = 'none';
+            }, 1200);
+        </script>
 
-    echo "<h1>Annonces en ligne</h1>";
-    echo "<table>";
-    echo "<tr><th>Titre</th><th>Image</th><th>Prix de Départ</th><th>Marque</th><th>Modèle</th><th>CV</th><th>Année</th><th>Couleur</th><th>Portes</th><th>Places</th><th>Combustible</th><th>Kms</th><th>Description</th><th>Date Annonce</th><th>Dernière mise à jour</th></tr>";
-    foreach ($results as $auction) {
-        echo "<tr>";
-        echo "<td>" . $auction['title'] . "</td>";
-        echo "<td>" . $auction['image'] . "</td>";
-        echo "<td>" . $auction['reserve_price'] . "</td>";
-        echo "<td>" . $auction['brand'] . "</td>";
-        echo "<td>" . $auction['model'] . "</td>";
-        echo "<td>" . $auction['hp'] . "</td>";
-        echo "<td>" . $auction['year'] . "</td>";
-        echo "<td>" . $auction['color'] . "</td>";
-        echo "<td>" . $auction['doors'] . "</td>";
-        echo "<td>" . $auction['places'] . "</td>";
-        echo "<td>" . $auction['fuel'] . "</td>";
-        echo "<td>" . $auction['kms'] . "</td>";
-        echo "<td>" . $auction['description'] . "</td>";
-        echo "<td>" . $auction['created_date'] . "</td>";
-        echo "<td>" . $auction['updated_date'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
+        <?php
+        try {
+            // Connexion bd
+            try {
+                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+            } catch (Exception $e2) {
+                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+            }
 
-    include 'Nav/footer.php'; ?>
+            // Récupération des annonces
+            $query = "SELECT * FROM auctions";
+            $results = $dbh->query($query);
 
+            // Affichage des annonces
+            echo "<h1>Annonces en ligne</h1>";
+            echo "<div class=\"cards\">";
+            foreach ($results as $auction) {
+                echo "<div class=\"card\">";
+                echo "<h2>" . $auction['title'] . "</h2>";
+                echo "<img src=\"" . $auction['image'] . "\" alt=\"Image de l'annonce\">";
+                echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
+
+                echo "</div>";
+            }
+            echo "</div>";
+        } catch (PDOException $e) {
+            // Gérer les erreurs de connexion à la bd
+            echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e->getMessage();
+        }
+        ?>
+    </main>
+
+    <?php include 'Nav/footer.php'; ?>
 </body>
 
 </html>
