@@ -8,6 +8,7 @@ function afficher_menu($nom, $liens)
     echo "<div class=\"btnNav\">";
     echo "<img class=\"logo\" src=\"images/logo.jpg\"/>";
 
+
     foreach ($liens as $lien => $texte) {
         // Vérifier si l'utilisateur est connecté
         $estConnecte = isset($_SESSION["user"]);

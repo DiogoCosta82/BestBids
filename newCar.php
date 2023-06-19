@@ -1,24 +1,7 @@
 <?php
 require_once __DIR__ . '/Class/newCar.class.php';
 require_once __DIR__ . '/annonce.php';
-require_once __DIR__ . '/index.php';
 
-
-// Afficher la roue loading
-echo "<div class=\"loading-overlay\">";
-echo "<div class=\"loading-spinner\"></div>";
-echo "</div>";
-?>
-
-<script>
-    // Cacher la roue après un délai de 2000ms
-    setTimeout(function() {
-        document.querySelector('.loading-overlay').style.display = 'none';
-    }, 1200);
-</script>
-
-
-<?php
 try {
     // Connexion bd
     try {
@@ -31,7 +14,6 @@ try {
     echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
     die();
 }
-
 
 
 // POST sur formulaire Annonce
