@@ -8,16 +8,10 @@ class newCar
     private $brand;
     private $model;
     private $hp;
-    private $year;
-    private $color;
-    private $doors;
-    private $places;
-    private $fuel;
-    private $kms;
     private $description;
     private $end_date;
 
-    public function __construct($title, $image_href, $reserve_price, $brand, $model, $hp, $year, $color, $doors, $places, $fuel, $kms, $description, $end_date)
+    public function __construct($title, $image_href, $reserve_price, $brand, $model, $hp, $description, $end_date)
     {
         $this->title = $title;
         $this->image_href = $image_href;
@@ -25,14 +19,7 @@ class newCar
         $this->brand = $brand;
         $this->model = $model;
         $this->hp = $hp;
-        $this->year = $year;
-        $this->color = $color;
-        $this->doors = $doors;
-        $this->places = $places;
-        $this->fuel = $fuel;
-        $this->kms = $kms;
         $this->description = $description;
-
         $this->end_date = $end_date;
     }
 
@@ -62,30 +49,6 @@ class newCar
     public function getHp()
     {
         return $this->hp;
-    }
-    public function getYear()
-    {
-        return $this->year;
-    }
-    public function getColor()
-    {
-        return $this->color;
-    }
-    public function getDoors()
-    {
-        return $this->doors;
-    }
-    public function getPlaces()
-    {
-        return $this->places;
-    }
-    public function getFuel()
-    {
-        return $this->fuel;
-    }
-    public function getKms()
-    {
-        return $this->kms;
     }
     public function getDescription()
     {
@@ -121,30 +84,6 @@ class newCar
     public function setHp($hp)
     {
         return $this->hp = $hp;
-    }
-    public function setYear($year)
-    {
-        return $this->year = $year;
-    }
-    public function setColor($color)
-    {
-        return $this->color = $color;
-    }
-    public function setDoors($doors)
-    {
-        return $this->doors = $doors;
-    }
-    public function setPlaces($places)
-    {
-        return $this->places = $places;
-    }
-    public function setFuel($fuel)
-    {
-        return $this->fuel = $fuel;
-    }
-    public function setKms($kms)
-    {
-        return $this->kms = $kms;
     }
     public function detDescription($description)
     {

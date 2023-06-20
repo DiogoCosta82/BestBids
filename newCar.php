@@ -27,12 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["brand"],
         $_POST["model"],
         $_POST["hp"],
-        $_POST["year"],
-        $_POST["color"],
-        $_POST["doors"],
-        $_POST["places"],
-        $_POST["fuel"],
-        $_POST["kms"],
         $_POST["description"],
         $_POST["end_date"],
     );
@@ -49,25 +43,20 @@ try {
     if ($query->rowCount() > 0) {
         // L'ID de l'utilisateur existe dans la table user, on peut insérer l'annonce
         //AJOUT annonce - connexion db
-        $query = $dbh->prepare("INSERT INTO `auctions` (`id_user`, `title`, `image_href`, `reserve_price`, `brand`,`model`, `hp`, `year`, `color`, `doors`, `places`, `fuel`, `kms`, `description`, `created_date`, `end_date`) 
-                            VALUES (:user_id; :title, :image_href, :reserve_price, :brand, :model, :hp, :year, :color, :doors, :places, :fuel, :kms, description, NOW(), :end_date)");
+        $query = $dbh->prepare("INSERT INTO `auctions` (`id_user`, `title`, `image_href`, `reserve_price`, `brand`,`model`, `hp`, `description`, `created_date`, `end_date`) 
+                            VALUES (:user_id; :title, :image_href, :reserve_price, :brand, :model, :hp, description, NOW(), :end_date)");
         $query->bindValue(":title", $_POST["title"]);
         $query->bindValue(":image_href", $_POST["image_href"]);
         $query->bindValue(":reserve_price", $_POST["reserve_price"]);
         $query->bindValue(":brand", $_POST["brand"]);
         $query->bindValue(":model", $_POST["model"]);
         $query->bindValue(":hp", $_POST["hp"]);
-        $query->bindValue(":year", $_POST["year"]);
-        $query->bindValue(":color", $_POST["color"]);
-        $query->bindValue(":doors", $_POST["doors"]);
-        $query->bindValue(":places", $_POST["places"]);
-        $query->bindValue(":fuel", $_POST["fuel"]);
-        $query->bindValue(":kms", $_POST["kms"]);
         $query->bindValue(":description", $_POST["description"]);
         $query->bindValue(":end_date", $_POST["end_date"]);
         $query->execute();
 
         $results = $query->fetchAll();
+        echo var_dump($results) . "<br>";
     } else {
     }
     echo "<script>alert('Votre annonce à été crée avec succès.');</script>";

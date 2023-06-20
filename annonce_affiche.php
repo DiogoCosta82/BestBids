@@ -17,8 +17,6 @@
         $menu_liens = [
             '/BestBids/annonce.php' => 'Déposer Annonce',
             '/BestBids/logout.php' => 'Déconnexion',
-
-
         ];
 
         afficher_menu("", $menu_liens);
@@ -28,14 +26,14 @@
     <main>
         <?php
 
-        // Afficher la roue loading
+        // Afficher loading
         echo "<div class=\"loading-overlay\">";
         echo "<div class=\"loading-spinner\"></div>";
         echo "</div>";
         ?>
 
         <script>
-            // Cacher la roue après un délai de 2000ms
+            // Cacher loading après un délai de 1200ms
             setTimeout(function() {
                 document.querySelector('.loading-overlay').style.display = 'none';
             }, 1200);

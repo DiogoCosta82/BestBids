@@ -2,11 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
 }
 
 .card {
-  width: 500px;
+  width: 50rem;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #dddfe2;
@@ -59,4 +58,11 @@ input[type="password"] {
   color: #d9534f;
   text-align: center;
   margin-top: 10px;
+}
+
+textarea {
+  resize: none;
+  width: 48.5rem;
+  height: 5rem;
+  padding: 2px 2px;
 }

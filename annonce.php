@@ -49,47 +49,12 @@
                 <label class="label">CV</label>
                 <input name="hp" type="text"></input><br>
 
-                <label class="label">Date carte grise</label>
-                <input name="year" type="date"></input><br>
-
-                <label class="label">Couleur</label>
-                <input name="color" type="text"></input><br>
-
-                <label class="portes">Portes</label>
-                <select name="doors" type="portes">
-                    <option>...</option>
-                    <option>3 Portes</option>
-                    <option>4 Portes</option>
-                    <option>5 Portes</option>
-                </select><br>
-
-                <label class="places">Places</label>
-                <select name="places" type="places">
-                    <option>...</option>
-                    <option>2 Places</option>
-                    <option>4 Places</option>
-                    <option>5 Places</option>
-                </select><br>
-
-                <label class="combustible">Combustible</label>
-                <select type="combustible" name="fuel">
-                    <option>...</option>
-                    <option>Essence</option>
-                    <option>Gasoil</option>
-                    <option>GPL</option>
-                    <option>Hybride</option>
-                    <option>Electrique</option>
-                </select><br>
-
-                <label class="label">Kms</label>
-                <input name="kms" type="text"></input><br>
-
                 <label class="label">Description</label>
                 <textarea name="description" type="text"></textarea><br>
 
                 <label class="label">Date fin d'enchère</label>
-                <input name="end_date" type="date"></input><br>
-
+                <input type="date" name="dateFin" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max="2023-07-31" required />
+                <br>
                 <button class="send">Valider</button>
             </form>
 
