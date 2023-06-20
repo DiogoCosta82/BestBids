@@ -3,9 +3,9 @@
 }
 
 body {
+
+  background: linear-gradient(217deg, #333, #1877f2);
   font-family: Arial, sans-serif;
-  background-color: lightslategray;
-  background-image: url("/images/img2.wallspic.com-sous_marin-symetrie-graphique-art_fractal-biologie_marine-3840x2160.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -84,6 +84,7 @@ a:hover {
 }
 
 .logo {
+
   width: 6rem;
   position: absolute;
   left: 0vh;
