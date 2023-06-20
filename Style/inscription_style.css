@@ -37,7 +37,7 @@ input {
 .buttonFormNew {
   width: 100%;
   padding: 10px;
-  background-color: #1877f2;
+  background-color: #3498db;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -45,5 +45,5 @@ input {
 }
 
 .buttonFormNew:hover {
-  background-color: #166fe5;
+  background-color: #3498db;
 }

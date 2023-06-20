@@ -25,30 +25,27 @@
         afficher_menu("", $menu_liens);
         ?>
     </header>
+    <div>
+        <main>
 
-    <main>
-        <?php
+            <?php
         // Afficher la roue loading
         echo "<div class=\"loading-overlay\">";
         echo "<div class=\"loading-spinner\"></div>";
         echo "</div>";
         ?>
 
-        <script>
+            <script>
             // Cacher la roue après un délai de 2000ms
             setTimeout(function() {
                 document.querySelector('.loading-overlay').style.display = 'none';
             }, 1200);
-        </script>
+            </script>
 
-        <?php
+            <?php
         try {
             // Connexion bd
-            try {
-                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-            } catch (Exception $e1) {
-                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-            }
+            $dbh = new PDO("mysql:dbname=best_bids;host:localhost;port=8889", "root", "root");
 
             // Récupération des annonces
             $query = "SELECT * FROM auctions LIMIT 4";
@@ -71,8 +68,9 @@
             echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e->getMessage();
         }
         ?>
-    </main>
 
+        </main>
+    </div>
     <?php include 'Nav/footer.php'; ?>
 </body>
 

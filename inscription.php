@@ -42,6 +42,7 @@
                 <input name="password" type="password" required><br>
 
                 <button class="buttonFormNew">Valider</button>
+
             </form>
         </div>
     </div>
