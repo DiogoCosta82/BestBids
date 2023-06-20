@@ -11,7 +11,7 @@ function afficher_menu($nom, $liens)
 
     foreach ($liens as $lien => $texte) {
         // Vérifier si l'utilisateur est connecté
-        $estConnecte = isset($_SESSION["user"]);
+        $estConnecte = isset($_SESSION["newUser"]);
 
         // Si le lien est pour la page de connexion et l'utilisateur est déjà connecté, afficher le bouton déconnexion
         if ($lien === "/BestBids/login.php" && $estConnecte) {
@@ -32,10 +32,13 @@ function afficher_menu($nom, $liens)
         // Si l'utilisateur est connecté, afficher les autres liens du menu
         elseif ($lien === "/BestBids/annonce.php" && $estConnecte) {
             echo "<button class=\"btn\"><a href=\"$lien\">Déposer Annonce</a></button>";
+        }
+        // Si l'utilisateur est connecté, afficher les autres liens du menu
+        elseif ($lien === "/BestBids/logout.php" && $estConnecte) {
+            echo "<button class=\"btn\"><a href=\"$lien\">Déconnexion</a></button>";
         } elseif ($lien === "/BestBids/index.php" && $estConnecte) {
             echo "<button class=\"btn\"><a href=\"$lien\">Accueil</a></button>";
             echo "<button class=\"btn\"><a href=\"$lien\">Déposer Annonce</a></button>";
-            echo "<button class=\"btn\" type=\"submit\">Déconnexion</button>";
         }
     }
 

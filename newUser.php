@@ -3,13 +3,12 @@ require_once __DIR__ . '/Class/newUser.class.php';
 require_once __DIR__ . '/inscription.php';
 
 try {
-    // try {
-    //     $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-    // } catch (Exception $e) {
-    //     $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-    // }
-    $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-} catch (PDOException $e) {
+    try {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+    } catch (Exception $e1) {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+    }
+} catch (PDOException $e1) {
     echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
     die();
 }

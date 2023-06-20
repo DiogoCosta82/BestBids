@@ -15,9 +15,8 @@
         include __DIR__ . '/Nav/menu.php';
 
         $menu_liens = [
-            '/BestBids/inscription.php' => 'Inscription',
             '/BestBids/annonce.php' => 'Déposer Annonce',
-            '/BestBids/login.php' => 'Connexion',
+            '/BestBids/logout.php' => 'Déconnexion',
 
 
         ];
@@ -25,30 +24,34 @@
         afficher_menu("", $menu_liens);
         ?>
     </header>
-    <div>
-        <main>
 
-            <?php
+    <main>
+        <?php
+
         // Afficher la roue loading
         echo "<div class=\"loading-overlay\">";
         echo "<div class=\"loading-spinner\"></div>";
         echo "</div>";
         ?>
 
-            <script>
+        <script>
             // Cacher la roue après un délai de 2000ms
             setTimeout(function() {
                 document.querySelector('.loading-overlay').style.display = 'none';
             }, 1200);
-            </script>
+        </script>
 
-            <?php
+        <?php
         try {
             // Connexion bd
-            $dbh = new PDO("mysql:dbname=best_bids;host:localhost;port=8889", "root", "root");
+            try {
+                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+            } catch (Exception $e1) {
+                $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+            }
 
             // Récupération des annonces
-            $query = "SELECT * FROM auctions LIMIT 4";
+            $query = "SELECT * FROM auctions";
             $results = $dbh->query($query);
 
             // Affichage des annonces
@@ -63,14 +66,13 @@
                 echo "</div>";
             }
             echo "</div>";
-        } catch (PDOException $e) {
+        } catch (PDOException $e1) {
             // Gérer les erreurs de connexion à la bd
-            echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e->getMessage();
+            echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e1->getMessage();
         }
         ?>
+    </main>
 
-        </main>
-    </div>
     <?php include 'Nav/footer.php'; ?>
 </body>
 

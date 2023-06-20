@@ -15,11 +15,9 @@ class newCar
     private $fuel;
     private $kms;
     private $description;
-    private $created_date;
-    private $updated_date;
     private $end_date;
 
-    public function __construct($title, $image_href, $reserve_price, $brand, $model, $hp, $year, $color, $doors, $places, $fuel, $kms, $description, $created_date, $updated_date, $end_date)
+    public function __construct($title, $image_href, $reserve_price, $brand, $model, $hp, $year, $color, $doors, $places, $fuel, $kms, $description, $end_date)
     {
         $this->title = $title;
         $this->image_href = $image_href;
@@ -34,8 +32,7 @@ class newCar
         $this->fuel = $fuel;
         $this->kms = $kms;
         $this->description = $description;
-        $this->created_date = $created_date;
-        $this->updated_date = $updated_date;
+
         $this->end_date = $end_date;
     }
 
@@ -93,14 +90,6 @@ class newCar
     public function getDescription()
     {
         return $this->description;
-    }
-    public function getCreatedDate()
-    {
-        return $this->created_date;
-    }
-    public function getUpdatedDate()
-    {
-        return $this->updated_date;
     }
     public function getEndDate()
     {
@@ -161,14 +150,7 @@ class newCar
     {
         return $this->description = $description;
     }
-    public function setCreatedDate($created_date)
-    {
-        return $this->created_date = $created_date;
-    }
-    public function setUpdatedDate($updated_date)
-    {
-        return $this->updated_date = $updated_date;
-    }
+
     public function setEndDate($end_date)
     {
         return $this->end_date = $end_date;
