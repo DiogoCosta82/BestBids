@@ -15,7 +15,7 @@ class LoginClass
     try {
       try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-      } catch (Exception $e1) {
+      } catch (Exception $e) {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
       }
 

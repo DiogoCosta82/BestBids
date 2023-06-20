@@ -2,16 +2,6 @@
 
 require_once __DIR__ . '/Class/login.class.php';
 
-// Vérifier si le formulaire de connexion a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Récupérer les données du formulaire
-  $email = $_POST["email"];
-  $password = $_POST["password"];
-
-  // Appeler la fonction LoginClass avec les données de connexion
-  LoginClass::Login($email, $password);
-}
-
 ?>
 
 <!DOCTYPE html>

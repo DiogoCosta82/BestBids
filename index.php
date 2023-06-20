@@ -59,8 +59,13 @@
                 foreach ($results as $auction) {
                     echo "<div class=\"card\">";
                     echo "<h2>" . $auction['title'] . "</h2>";
-                    echo "<img src=\"" . $auction['image'] . "\" alt=\"Image de l'annonce\">";
+                    echo "<img src=\"" . $auction['image_href'] . "\" alt=\"Image de l'annonce\">";
                     echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
+                    echo "<p>Marque : " . $auction['brand'] . "</p>";
+                    echo "<p>Modèle: " . $auction['model'] . "</p>";
+                    echo "<p>Puissance : " . $auction['hp'] . "</p>";
+                    echo "<p>Description : " . $auction['description'] . "</p>";
+                    echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
 
                     echo "</div>";
                 }

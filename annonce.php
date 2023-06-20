@@ -53,7 +53,7 @@
                 <textarea name="description" type="text"></textarea><br>
 
                 <label class="label">Date fin d'enchère</label>
-                <input type="date" name="dateFin" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max="2023-07-31" required />
+                <input type="date" name="end_date" />
                 <br>
                 <button class="send">Valider</button>
             </form>

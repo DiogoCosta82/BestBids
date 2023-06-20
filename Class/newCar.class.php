@@ -1,18 +1,22 @@
+
 <?php
+
 class newCar
 {
+    protected $id_user;
+    protected $title;
+    protected $image_href;
+    protected $reserve_price;
+    protected $brand;
+    protected $model;
+    protected $hp;
+    protected $description;
+    protected $end_date;
 
-    private $title;
-    private $image_href;
-    private $reserve_price;
-    private $brand;
-    private $model;
-    private $hp;
-    private $description;
-    private $end_date;
 
-    public function __construct($title, $image_href, $reserve_price, $brand, $model, $hp, $description, $end_date)
+    public function __construct($id_user, $title, $image_href, $reserve_price, $brand, $model, $hp, $description, $end_date)
     {
+        $this->id_user = $id_user;
         $this->title = $title;
         $this->image_href = $image_href;
         $this->reserve_price = $reserve_price;
@@ -21,6 +25,11 @@ class newCar
         $this->hp = $hp;
         $this->description = $description;
         $this->end_date = $end_date;
+    }
+
+    public function getIdUser()
+    {
+        return $this->id_user;
     }
 
     public function getTitle()
@@ -93,5 +102,23 @@ class newCar
     public function setEndDate($end_date)
     {
         return $this->end_date = $end_date;
+    }
+
+    public function save($dbh)
+    {
+        // Insérer l'annonce dans la table auctions
+        $query = $dbh->prepare("INSERT INTO `auctions` (`id_user`, `title`, `image_href`, `reserve_price`, `brand`,`model`, `hp`, `description`, `created_date`, `end_date`) 
+        VALUES (:id_user, :title, :image_href, :reserve_price, :brand, :model, :hp, :description, NOW(), :end_date)");
+
+        $query->bindParam(":id_user", $this->id_user);
+        $query->bindParam(":title", $this->title);
+        $query->bindParam(":image_href", $this->image_href);
+        $query->bindParam(":reserve_price", $this->reserve_price);
+        $query->bindParam(":brand", $this->brand);
+        $query->bindParam(":model", $this->model);
+        $query->bindParam(":hp", $this->hp);
+        $query->bindParam(":description", $this->description);
+        $query->bindParam(":end_date", $this->end_date);
+        $query->execute();
     }
 }
