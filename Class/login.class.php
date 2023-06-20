@@ -13,7 +13,11 @@ class LoginClass
     }
 
     try {
-      $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+      try {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+      } catch (Exception $e1) {
+        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+      }
 
       $query = $dbh->prepare('SELECT * FROM user WHERE `email` = :email AND `password` = :password');
       $query->execute(array(':email' => $email, ':password' => $password));
