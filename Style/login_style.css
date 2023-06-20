@@ -18,7 +18,7 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #1877f2;
+  color: #3498db;
 }
 
 form {
@@ -44,7 +44,7 @@ input[type="password"] {
 .buttonLogin {
   width: 100%;
   padding: 10px;
-  background-color: #1877f2;
+  background-color: #3498db;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -52,7 +52,7 @@ input[type="password"] {
 }
 
 .buttonLogin:hover {
-  background-color: #166fe5;
+  background-color: #3498db;
 }
 
 .error {
