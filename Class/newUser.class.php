@@ -1,6 +1,6 @@
 <?php
 
-class NewUser
+class newUser
 {
    private $last_name;
    private $first_name;

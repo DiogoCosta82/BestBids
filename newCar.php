@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/Class/newCar.class.php';
 
-
 session_start();
 try {
     try {
@@ -30,13 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_SESSION["newUser"])) {
     $hp = $_POST["hp"];
     $description = $_POST["description"];
     $end_date = date("Y-m-d", strtotime($_POST["end_date"]));
-    var_dump($end_date);
-
-
+    //var_dump($end_date);
 
     // Nouvel objet NewCar
     $newCar = new NewCar($id_user, $title, $imageHref, $reservePrice, $brand, $model, $hp, $description, $end_date);
-
 
     try {
         // On recupere l'id de l'utilisateur connecté
@@ -51,11 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_SESSION["newUser"])) {
         if ($query->rowCount() > 0) {
             $newCar->save($dbh);
             // Rediriger vers la page d'affichage de l'annonce
-            header("Location: annonce_affiche.php");
-        } else {
+            echo "<script>alert('Votre annonce à été crée avec succès.');</script>";
+            echo "<script>setTimeout(function() {window.location.href = 'annonce_affiche.php';});</script>";
         }
-        echo "<script>alert('Votre annonce à été crée avec succès.');</script>";
-        echo "<script>setTimeout(function() {window.location.href = 'annonce_affiche.php';});</script>";
     } catch (PDOException $e) {
         echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
     }

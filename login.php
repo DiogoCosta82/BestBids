@@ -1,7 +1,6 @@
 <?php
-
 require_once __DIR__ . '/Class/login.class.php';
-
+include __DIR__ . '/Nav/menu.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +15,13 @@ require_once __DIR__ . '/Class/login.class.php';
 <body>
     <header>
         <?php
-    include __DIR__ . '/Nav/menu.php';
+        $menu_liens = [
+            '/BestBids/index.php' => 'Accueil',
+            '/BestBids/inscription.php' => 'Inscription',
+        ];
 
-    $menu_liens = [
-      '/BestBids/index.php' => 'Accueil',
-      '/BestBids/inscription.php' => 'Inscription',
-    ];
-
-    afficher_menu("", $menu_liens);
-
-    ?>
+        afficher_menu("", $menu_liens);
+        ?>
     </header>
     <div class="container">
         <div class="card">
@@ -39,11 +35,11 @@ require_once __DIR__ . '/Class/login.class.php';
             </form>
 
             <?php
-      // Vérifier si un message d'erreur est présent dans l'URL
-      if (isset($_GET["error"]) && $_GET["error"] == 1) {
-        echo '<p class="error">Erreur lors de la connexion ! Veuillez vérifier vos informations !</p>';
-      }
-      ?>
+            // Vérifier si un message d'erreur est présent dans l'URL
+            if (isset($_GET["error"]) && $_GET["error"] == 1) {
+                echo '<p class="error">Erreur lors de la connexion ! Veuillez vérifier vos informations !</p>';
+            }
+            ?>
         </div>
     </div>
 

@@ -2,17 +2,17 @@
 require_once __DIR__ . '/Class/newUser.class.php';
 require_once __DIR__ . '/inscription.php';
 
+
 try {
     try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-    } catch (Exception $e1) {
+    } catch (Exception $e) {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
     }
-} catch (PDOException $e1) {
+} catch (PDOException $e) {
     echo "Une erreur s'est produite lors de la requête. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
     die();
 }
-
 
 // POST sur formulaire inscription
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,8 +33,6 @@ try {
     $query->bindValue(":email", $_POST["email"]);
     $query->bindValue(":password", $_POST["password"]);
     $query->execute();
-
-    $results = $query->fetchAll();
 
     echo "<script>alert('La création du compte utilisateur a été effectuée avec succès.');</script>";
     echo "<script>setTimeout(function() {window.location.href = 'index.php';});</script>";
