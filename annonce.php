@@ -1,3 +1,7 @@
+<?php
+include __DIR__ . '/Nav/menu.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,8 +16,6 @@
 <body>
     <header>
         <?php
-        include __DIR__ . '/Nav/menu.php';
-
         $menu_liens = [
             '/BestBids/index.php' => 'Accueil',
             '/BestBids/logout.php' => 'Déconnexion',
@@ -25,11 +27,8 @@
 
     <div class="container">
         <div class="card">
-
-            <form action="newCar.php" method="POST">
-
+            <form action="Functions/newCar.php" method="POST">
                 <h2>Deposer votre annonce</h2>
-
 
                 <label class="label">Titre</label>
                 <input name="title" type="text"></input><br>
@@ -53,11 +52,10 @@
                 <textarea name="description" type="text"></textarea><br>
 
                 <label class="label">Date fin d'enchère</label>
-                <input type="date" name="dateFin" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max="2023-07-31" required />
+                <input type="date" name="end_date" />
                 <br>
                 <button class="send">Valider</button>
             </form>
-
         </div>
     </div>
     <footer>

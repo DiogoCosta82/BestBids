@@ -1,3 +1,7 @@
+<?php
+include __DIR__ . '/Nav/menu.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,13 +16,9 @@
 <body>
     <header>
         <?php
-        include __DIR__ . '/Nav/menu.php';
-
-
         $menu_liens = [
             '/BestBids/index.php' => 'Accueil',
             '/BestBids/login.php' => 'Connexion',
-
         ];
 
         afficher_menu("", $menu_liens);
@@ -50,10 +50,6 @@
     <footer>
         <?php include 'Nav/footer.php'; ?>
     </footer>
-
-
-
-
 </body>
 
 </html>
