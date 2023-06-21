@@ -31,6 +31,7 @@ function AnnonceDetail()
             echo "<img class=\"photo\" src=\"" . $auction['image_href'] . "\" alt=\"Image de l'enchère\">";
             echo "<div class=\"detail\">";
             echo "<h2>" . $auction['title'] . "</h2>";
+            echo "<br>";
             echo "<p>Marque : " . $auction['brand'] . "</p>";
             echo "<p>Modèle : " . $auction['model'] . "</p>";
             echo "<p>Puissance : " . $auction['hp'] . "</p>";

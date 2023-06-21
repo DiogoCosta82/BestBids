@@ -30,6 +30,7 @@
 }
 
 h2 {
+  text-align: center;
   margin-left: 15px;
   margin-top: 25px;
   font-weight: 900;
@@ -59,4 +60,10 @@ h2 {
   padding-right: 1rem;
   margin-top: 7rem;
   margin-bottom: 8ch;
+}
+
+.detail {
+  margin-top: 0;
+  margin-left: -3rem;
+  line-height: 2em;
 }
