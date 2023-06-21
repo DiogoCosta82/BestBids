@@ -1,4 +1,3 @@
-
 <?php
 function AnnonceAffiche()
 {
@@ -17,7 +16,7 @@ function AnnonceAffiche()
         $results = $query->fetchAll();
 
         // Affichage des annonces
-        echo "<h1>Annonces en ligne</h1>";
+       
         echo "<div class=\"cards\">";
         foreach ($results as $auction) {
             echo "<div class=\"card\">";

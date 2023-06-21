@@ -28,14 +28,17 @@ function AnnonceDetail()
             // Afficher les détails de l'enchère
             echo "<div class=\"cards\">";
             echo "<div class=\"card\">";
-            echo "<h2>" . $auction['title'] . "</h2>";
             echo "<img class=\"photo\" src=\"" . $auction['image_href'] . "\" alt=\"Image de l'enchère\">";
+            echo "<div class=\"detail\">";
+            echo "<h2>" . $auction['title'] . "</h2>";
             echo "<p>Marque : " . $auction['brand'] . "</p>";
             echo "<p>Modèle : " . $auction['model'] . "</p>";
             echo "<p>Puissance : " . $auction['hp'] . "</p>";
             echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
             echo "<p>Description : " . $auction['description'] . "</p>";
+            echo "</div>";
+            echo "</div>";
             echo "</div>";
         } else {
             echo "L'enchère sélectionnée n'existe pas.";
