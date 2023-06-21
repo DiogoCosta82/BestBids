@@ -47,7 +47,9 @@ include __DIR__ . '/Functions/AnnonceIndex.php';
         ?>
 
     </div>
-    <?php include 'Nav/footer.php'; ?>
+    <footer>
+        <?php include 'Nav/footer.php'; ?>
+    </footer>
 </body>
 
 </html>

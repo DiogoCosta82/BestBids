@@ -32,9 +32,7 @@ function afficher_menu($nom, $liens)
         // Si l'utilisateur est connecté, afficher les autres liens du menu
         elseif ($lien === "/BestBids/annonce.php" && $estConnecte) {
             echo "<button class=\"btn\"><a href=\"$lien\">Déposer Annonce</a></button>";
-        }
-        // Si l'utilisateur est connecté, afficher les autres liens du menu
-        elseif ($lien === "/BestBids/logout.php" && $estConnecte) {
+        } elseif ($lien === "/BestBids/logout.php" && $estConnecte) {
             echo "<button class=\"btn\"><a href=\"$lien\">Déconnexion</a></button>";
         } elseif ($lien === "/BestBids/index.php" && $estConnecte) {
             echo "<button class=\"btn\"><a href=\"$lien\">Accueil</a></button>";

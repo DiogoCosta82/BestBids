@@ -32,7 +32,7 @@ function AnnonceAffiche()
         }
 
         echo "</div>";
-    } catch (PDOException $e1) {
+    } catch (PDOException $e) {
         // Gérer les erreurs de connexion à la bd
         echo "Une erreur s'est produite lors de la connexion à la base de données : " . $e->getMessage();
     }

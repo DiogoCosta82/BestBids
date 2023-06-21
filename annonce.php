@@ -27,7 +27,7 @@ include __DIR__ . '/Nav/menu.php';
 
     <div class="container">
         <div class="card">
-            <form action="Functions/newCar.php" method="POST">
+            <form action="newCar.php" method="POST">
                 <h2>Deposer votre annonce</h2>
 
                 <label class="label">Titre</label>

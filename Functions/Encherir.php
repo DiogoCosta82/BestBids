@@ -1,15 +1,11 @@
 <?php
-require_once(__DIR__ . '/Functions/AnnonceDetail.php');
+require_once __DIR__ . '/AnnonceDetail.php';
 
-// Fonction
-function Encherir($amount) //UPDATE pour enchères
+function Encherir($reserve_price)
 {
-
     // 1 - Vérifier si l'utilisateur est déjà connecté
-    session_start();
-    if (isset($_SESSION["newUser"])) {
-        echo "Vous êtes bien connecté(e), vous pouvez enchérir !";
-    } else {
+
+    if (!isset($_SESSION["newUser"])) {
         // Afficher un message d'erreur
         echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
         return; // Fin
@@ -19,15 +15,18 @@ function Encherir($amount) //UPDATE pour enchères
     try {
         $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
         $query = $dbh->prepare('SELECT * FROM auctions WHERE reserve_price = :reserve_price ');
-        $query->execute(array(':reserve_price' => $reservePrice));
-        $reservePrice = $query->fetch();
-        // var_dump($reservePrice);
+        $query->bindParam(':reserve_price', $reserve_price);
+        $query->execute();
+        $reserve_price = $query->fetch();
 
-        // 3- Création de l'INPUT pour enchère (amount sur DB table bids)
-        echo "<div><li>Votre enchère : <input type='number' name='amount' ></input></li>
-            <br>
-            <button type='submit'>Enchérir</button>
-            <br></div>";
+        // 3- Création du formulaire pour enchérir
+        echo "<form method='POST'>
+            <div>
+                <p>Votre enchère : <input type='number' name='amount'></p>
+                <br>
+                <button type='submit'>Enchérir</button>
+            </div>
+        </form>";
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
         die();
@@ -39,15 +38,14 @@ function Encherir($amount) //UPDATE pour enchères
         $amount = $_POST["amount"];
 
         //PDO - INSERT - enregistrement du amount dans la table Bids
-        $query = $dbh->prepare("INSERT INTO `bids` (`amount`)
-        VALUES (:amount)");
-        $query->bindValue(":amount", $_POST["amount"]);
+        $query = $dbh->prepare("INSERT INTO `bids` (`amount`) VALUES (:amount)");
+        $query->bindParam(":amount", $amount);
         $query->execute();
 
         //PDO - UPDATE - changement du prix_depart dans le tableau auctions
-        $query = $dbh->prepare("UPDATE `auctions` (`amount `)
-        SET amount = $amount WHERE reserve_price = $reservePrice ");
-        $query->bindValue(":amount", $_POST["amount"]);
+        $query = $dbh->prepare("UPDATE `auctions` SET amount = :amount WHERE reserve_price = :reserve_price");
+        $query->bindParam(":amount", $amount);
+        $query->bindParam(":reserve_price", $reserve_price["reserve_price"]);
         $query->execute();
 
         // On affiche un message de confirmation

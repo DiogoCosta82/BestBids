@@ -47,9 +47,9 @@ include __DIR__ . '/Nav/menu.php';
         </div>
     </div>
 
-    <footer>
-        <?php include 'Nav/footer.php'; ?>
-    </footer>
+
+    <?php include 'Nav/footer.php'; ?>
+
 </body>
 
 </html>

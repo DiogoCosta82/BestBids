@@ -2,6 +2,7 @@
 include __DIR__ . '/Nav/menu.php';
 require_once __DIR__ . '/Class/newCar.class.php';
 include __DIR__ . '/Functions/AnnonceDetail.php';
+require_once __DIR__ . '/Functions/Encherir.php';
 
 ?>
 
@@ -21,7 +22,7 @@ include __DIR__ . '/Functions/AnnonceDetail.php';
     <header>
         <?php
         $menu_liens = [
-            '/BestBids/annonce.php' => 'Déposer Annonce',
+            '/BestBids/annonce_affiche.php' => 'Retour',
             '/BestBids/logout.php' => 'Déconnexion',
         ];
 
@@ -42,11 +43,18 @@ include __DIR__ . '/Functions/AnnonceDetail.php';
             document.querySelector('.loading-overlay').style.display = 'none';
         }, 1200);
     </script>
+
     <?php
-    AnnonceDetail()
+    $starting_price = null;
+    $reserve_price = 0; // Remplacez 0 par la valeur réelle de $reserve_price
+
+    AnnonceDetail();
+    Encherir($reserve_price);
     ?>
 
     <footer>
         <?php include 'Nav/footer.php'; ?>
     </footer>
 </body>
+
+</html>
