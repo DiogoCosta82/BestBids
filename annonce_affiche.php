@@ -34,7 +34,7 @@
 
         <script>
             // Cacher loading après un délai de 1200ms
-            setTimeout(function() {
+            setTimeout(function () {
                 document.querySelector('.loading-overlay').style.display = 'none';
             }, 1200);
         </script>
