@@ -11,15 +11,11 @@
 }
 
 .card {
-  display: block;
-  justify-content: center;
-  align-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 10px;
-  background-color: rgb(63, 64, 65);
-  width: 70rem;
-  text-align: justify;
+  display: flex;
+  border-radius: 15rem;
+  background-color: gradien;
+  height: -2px;
+  background: linear-gradient(#41aaf2, #5c5c83);
   padding: 20px;
 }
 
@@ -34,6 +30,7 @@
 }
 
 h2 {
+  text-align: center;
   margin-left: 15px;
   margin-top: 25px;
   font-weight: 900;
@@ -45,8 +42,28 @@ h2 {
 }
 
 .photo {
+  margin-left: 0;
   display: flex;
-  width: 55rem;
+  width: 45rem;
+
+  border-radius: 30vh;
+}
+
+.img {
+  width: 45rem;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 30vh;
+}
+
+.cards {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 7rem;
+  margin-bottom: 8ch;
+}
+
+.detail {
+  margin-top: 0;
+  margin-left: -3rem;
+  line-height: 2em;
 }
