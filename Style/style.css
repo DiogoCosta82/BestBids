@@ -4,7 +4,7 @@
 
 body {
 
-  background-color: #251938;
+  background: radial-gradient(circle, rgba(44, 77, 99, 1) 0%, rgba(37, 121, 176, 1) 69%);
   font-family: Arial, sans-serif;
   background-size: cover;
   background-repeat: no-repeat;
