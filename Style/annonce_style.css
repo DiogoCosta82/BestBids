@@ -23,7 +23,7 @@ h1 {
   width: 300px;
   padding: 20px;
   margin: 10px;
-  background-color: #fff;
+  background: linear-gradient(#3498db, #767676);
   border: 1px solid #ccc;
   border-radius: 5px;
 }

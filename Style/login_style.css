@@ -8,7 +8,7 @@
 .card {
   width: 500px;
   padding: 20px;
-  background-color: #fff;
+  background: linear-gradient(#3498db, #767676);
   border: 1px solid #dddfe2;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -44,7 +44,7 @@ input[type="password"] {
 .buttonLogin {
   width: 100%;
   padding: 10px;
-  background-color: #3498db;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -52,6 +52,9 @@ input[type="password"] {
 }
 
 .buttonLogin:hover {
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
   background-color: #3498db;
 }
 
