@@ -37,10 +37,10 @@
             ?>
 
             <script>
-                // Cacher la roue après un délai de 2000ms
-                setTimeout(function() {
-                    document.querySelector('.loading-overlay').style.display = 'none';
-                }, 1200);
+            // Cacher la roue après un délai de 2000ms
+            setTimeout(function() {
+                document.querySelector('.loading-overlay').style.display = 'none';
+            }, 1200);
             </script>
 
             <?php
@@ -55,10 +55,11 @@
                 $results = $dbh->query($query);
 
                 // Affichage des annonces
-                echo "<h1>Annonces en ligne</h1>";
+            
                 echo "<div class=\"cards\">";
                 foreach ($results as $auction) {
                     echo "<div class=\"card\">";
+                    echo "<div>";
                     echo "<h2>" . $auction['title'] . "</h2>";
                     echo "<br>";
                     echo "<img class=\"photo\" src=\"" . $auction['image_href'] . "\" alt=\"Image de l'annonce\">";
@@ -70,6 +71,8 @@
                     echo "<br>";
                     echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
                     echo "</div>";
+                    echo "</div>";
+
                 }
                 echo "</div>";
             } catch (PDOException $e) {
