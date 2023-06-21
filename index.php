@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/style.css" />
+    <link rel="stylesheet" href="Style/styleCard.css" />
     <title>Best Bid's</title>
 
 </head>
@@ -59,14 +60,15 @@
                 foreach ($results as $auction) {
                     echo "<div class=\"card\">";
                     echo "<h2>" . $auction['title'] . "</h2>";
-                    echo "<img src=\"" . $auction['image_href'] . "\" alt=\"Image de l'annonce\">";
+                    echo "<br>";
+                    echo "<img class=\"photo\" src=\"" . $auction['image_href'] . "\" alt=\"Image de l'annonce\">";
                     echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
                     echo "<p>Marque : " . $auction['brand'] . "</p>";
                     echo "<p>Modèle: " . $auction['model'] . "</p>";
                     echo "<p>Puissance : " . $auction['hp'] . "</p>";
                     echo "<p>Description : " . $auction['description'] . "</p>";
+                    echo "<br>";
                     echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
-
                     echo "</div>";
                 }
                 echo "</div>";
