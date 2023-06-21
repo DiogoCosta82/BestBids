@@ -1,8 +1,13 @@
+* {
+  margin: auto;
+}
+
 .card {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 2.5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .card {
@@ -41,7 +46,7 @@ h2 {
 
 .photo {
   display: flex;
-  width: 60rem;
+  width: 55rem;
   border: 2px solid black;
   border-radius: 10px;
 }

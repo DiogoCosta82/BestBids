@@ -46,4 +46,7 @@ include __DIR__ . '/Functions/AnnonceDetail.php';
     AnnonceDetail()
     ?>
 
+    <footer>
+        <?php include 'Nav/footer.php'; ?>
+    </footer>
 </body>
