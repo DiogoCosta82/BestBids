@@ -9,18 +9,24 @@ class newAuction
     private $bid_date;
     private $winner_bid;
     private $reserve_price;
+    private $newAmount;
 
-    public function __construct($id_bid, $auction_id, $user_id, $amount, $bid_date, $winner_bid, $reserve_price)
+    public function __construct($id_bid, $auction_id, $user_id, $amount, $bid_date, $winner_bid, $reserve_price, $newAmount)
     {
         $this->id_bid = $id_bid;
         $this->auction_id = $auction_id;
         $this->user_id = $user_id;
         $this->amount = $amount;
+        $this->newAmount = $this->reserve_price + ($this->amount);
         $this->bid_date = $bid_date;
         $this->winner_bid = $winner_bid;
         $this->reserve_price = $reserve_price;
     }
 
+    public function getNewAmount()
+    {
+        return $this->newAmount;
+    }
     public function getBid()
     {
         return $this->id_bid;
@@ -56,6 +62,10 @@ class newAuction
     }
 
 
+    public function setNewAmount()
+    {
+        return $this->newAmount;
+    }
     public function setBid()
     {
         return $this->id_bid;
@@ -91,7 +101,7 @@ class newAuction
         $query->execute();
         //echo "<script>alert('Le gagnant est $');</script>";
         // AJOUT d'une enchère - connexion avec la db
-        $query = $dbh->prepare("INSERT INTO `user` (`id_bid`, `auction_id`,`user_id`,`amount`,`bid_date`,
+        $query = $dbh->prepare("INSERT INTO `auction` (`id_bid`, `auction_id`,`user_id`,`amount`,`bid_date`,
      `winner_bid`,`reserve_price`) VALUES (:id_bid, :auction_id, :user_id, :amount, :bid_date, :reserve_price())");
         $query->bindValue(":id_bid", $_POST["id_bid"]);
         $query->bindValue(":auction_id", $_POST["auction_id"]);
@@ -99,6 +109,7 @@ class newAuction
         $query->bindValue(":bid_date", $_POST["bid_date"]);
         $query->bindValue(":winner_bid", $_POST["winner_bid"]);
         $query->bindValue(":reserve_price", $_POST["reserve_price"]);
+        $query->bindValue(":newAmount", $_POST["newAmount"]);
 
         $query->execute();
         $results = $query->fetchAll();
