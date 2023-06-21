@@ -18,7 +18,7 @@ try {
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Je récupère les informations et je crée l'instance 
-    $car = new newAuction(
+    $bids = new newBids(
         $_POST["id_bid"],
         $_POST["auction_id"],
         $_POST["user_id"],
@@ -26,12 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["bid_date"],
         $_POST["winner_bid"],
         $_POST["reserve_price"],
+        $_POST["newAmount"],
 
     );
 }
-if ($query->rowCount() > 0) {
-    $newCar->save($dbh);
-    echo "<script>alert('Le gagnant est $');</script>";
+if ($bid_date->rowCount() > 0) {
+    $winner_bid->save($dbh);
+    $this->newAmount = $winner_bid;
+    echo "<script>alert('Le gagnant est $firstname $lastname pour un montant de $winner_bid'<script>";
 } else {
     echo "<script>alert('Votre enchère a bien été prise en compte!.');</script>";
 }

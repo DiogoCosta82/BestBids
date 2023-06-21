@@ -1,6 +1,6 @@
 <?php
 
-class newAuction
+class newBids
 {
     private $id_bid;
     private $auction_id;
@@ -17,16 +17,13 @@ class newAuction
         $this->auction_id = $auction_id;
         $this->user_id = $user_id;
         $this->amount = $amount;
-        $this->newAmount = $this->reserve_price + ($this->amount);
         $this->bid_date = $bid_date;
         $this->winner_bid = $winner_bid;
         $this->reserve_price = $reserve_price;
+        $this->newAmount = $this->reserve_price + ($this->amount);
     }
 
-    public function getNewAmount()
-    {
-        return $this->newAmount;
-    }
+
     public function getBid()
     {
         return $this->id_bid;
@@ -60,12 +57,12 @@ class newAuction
     {
         return $this->reserve_price;
     }
-
-
-    public function setNewAmount()
+    public function getNewAmount()
     {
         return $this->newAmount;
     }
+
+
     public function setBid()
     {
         return $this->id_bid;
@@ -94,15 +91,17 @@ class newAuction
     {
         return $this->reserve_price;
     }
+    public function setNewAmount()
+    {
+        return $this->newAmount;
+    }
     public function saveAuction($dbh)
     {
-        $query = $dbh->prepare("SELECT * FROM user WHERE id_user = :user_id");
-        // $query->bindParam(":user_id", );
-        $query->execute();
+
         //echo "<script>alert('Le gagnant est $');</script>";
         // AJOUT d'une enchère - connexion avec la db
-        $query = $dbh->prepare("INSERT INTO `auction` (`id_bid`, `auction_id`,`user_id`,`amount`,`bid_date`,
-     `winner_bid`,`reserve_price`) VALUES (:id_bid, :auction_id, :user_id, :amount, :bid_date, :reserve_price())");
+        $query = $dbh->prepare("INSERT INTO `bids` (`id_bid`, `auction_id`,`user_id`,`amount`,`bid_date`,
+     `winner_bid`,`reserve_price`,`newAmount`) VALUES (:id_bid, :auction_id, :user_id, :amount, :bid_date, :reserve_price, :newAmount())");
         $query->bindValue(":id_bid", $_POST["id_bid"]);
         $query->bindValue(":auction_id", $_POST["auction_id"]);
         $query->bindValue(":user_id", $_POST["user_id"]);
@@ -112,8 +111,5 @@ class newAuction
         $query->bindValue(":newAmount", $_POST["newAmount"]);
 
         $query->execute();
-        $results = $query->fetchAll();
-        $query = $dbh->prepare("INSERT INTO `user` (`id_bid`, `auction_id`,`user_id`,`amount`,`bid_date`,
-        `winner_bid`,`reserve_price`) VALUES (:id_bid, :auction_id, :user_id, :amount, :bid_date, :reserve_price())");
     }
 }
