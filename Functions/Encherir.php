@@ -4,7 +4,6 @@ require_once __DIR__ . '/AnnonceDetail.php';
 function Encherir($reserve_price)
 {
     // 1 - Vérifier si l'utilisateur est déjà connecté
-
     if (!isset($_SESSION["newUser"])) {
         // Afficher un message d'erreur
         echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
@@ -22,7 +21,7 @@ function Encherir($reserve_price)
         // 3- Création du formulaire pour enchérir
         echo "<form method='POST'>
             <div>
-                <p>Votre enchère : <input type='number' name='amount'></p>
+                <li>Votre enchère : <input type='number' name='amount'></li>
                 <br>
                 <button type='submit'>Enchérir</button>
             </div>

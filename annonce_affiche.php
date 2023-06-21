@@ -42,11 +42,6 @@ include __DIR__ . '/Functions/AnnonceAffiche.php';
         }, 1200);
     </script>
 
-    <?php
-    AnnonceAffiche()
-    ?>
-
-
     <?php include 'Nav/footer.php'; ?>
 </body>
 
