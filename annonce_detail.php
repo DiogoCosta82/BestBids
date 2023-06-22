@@ -76,6 +76,9 @@ require_once __DIR__ . '/Functions/Encherir.php';
             $winnerName = $newBid->getWinnerName($dbh);
 
             if (!empty($winnerName)) {
+                echo "<br>";
+                echo "<p>Enchère terminé! </p>";
+                echo "<br>";
                 echo "<p>Le gagnant de cette enchère est : " . $winnerName . "</p>";
             }
         }
