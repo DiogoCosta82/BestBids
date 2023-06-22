@@ -14,16 +14,16 @@ include __DIR__ . '/Nav/menu.php';
 </head>
 
 <body>
-    <header>
-        <?php
-        $menu_liens = [
-            '/BestBids/index.php' => 'Accueil',
-            '/BestBids/login.php' => 'Connexion',
-        ];
 
-        afficher_menu("", $menu_liens);
-        ?>
-    </header>
+    <?php
+    $menu_liens = [
+        '/BestBids/index.php' => 'Accueil',
+        '/BestBids/login.php' => 'Connexion',
+    ];
+
+    afficher_menu("", $menu_liens);
+    ?>
+
 
     <div class="container">
         <div class="card">
@@ -40,7 +40,7 @@ include __DIR__ . '/Nav/menu.php';
 
                 <label class="label">Mot de passe</label>
                 <input name="password" type="password" required><br>
-
+                <br>
                 <button class="buttonFormNew">Valider</button>
 
             </form>

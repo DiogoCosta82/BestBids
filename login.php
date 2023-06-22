@@ -31,6 +31,7 @@ include __DIR__ . '/Nav/menu.php';
                 <input name="email" type="text" required><br />
                 <label class="labelLogin">Mot de passe :</label>
                 <input name="password" type="password" required><br />
+                <br>
                 <button class="buttonLogin">Valider</button>
             </form>
 

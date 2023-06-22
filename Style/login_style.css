@@ -6,7 +6,9 @@
 }
 
 .card {
-  margin-bottom: 10vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
   width: 500px;
   padding: 20px;
   background: linear-gradient(#3498db, #767676);
@@ -35,7 +37,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
-  width: 95%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #dddfe2;
@@ -44,6 +46,7 @@ input[type="password"] {
 
 .buttonLogin {
   width: 100%;
+  margin-left: 8px;
   padding: 10px;
   background-color: #000000;
   color: #fff;
