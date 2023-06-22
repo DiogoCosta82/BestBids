@@ -29,6 +29,7 @@ function AnnonceAffiche()
             echo "<br>";
             echo "<p>Prix de départ : €" . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
+            echo "<br>";
             echo '<button class=btn><a href="annonce_detail.php?id=' . $auction['id_auction'] . '">Détails</a></button>';
             echo "</div>";
         }
