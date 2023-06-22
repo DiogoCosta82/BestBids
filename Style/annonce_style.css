@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #251938;
+  background: radial-gradient(circle, rgba(44, 77, 99, 1) 0%, rgba(37, 121, 176, 1) 69%);
 }
 
 .container {
@@ -43,4 +43,21 @@ h1 {
 .annonce-card p {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.photo {
+  width: 20rem;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.a {
+
+  color: red;
+}
+
+.img {
+  width: 20rem;
+  border: 2px solid black;
+  border-radius: 10px;
 }

@@ -15,12 +15,12 @@
   border-radius: 15rem;
   background-color: gradien;
   height: -2px;
-  background: linear-gradient(#41aaf2, #5c5c83);
+  background: linear-gradient(#41aaf2, #42424d);
   padding: 20px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 #3498db;
+  box-shadow: 0 8px 16px 0 #e5d5be;
 }
 
 .titre {
