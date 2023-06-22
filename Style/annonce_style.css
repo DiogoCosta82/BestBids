@@ -55,3 +55,9 @@ h1 {
 
   color: red;
 }
+
+.img {
+  width: 20rem;
+  border: 2px solid black;
+  border-radius: 10px;
+}
