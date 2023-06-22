@@ -42,7 +42,9 @@ include __DIR__ . '/Nav/menu.php';
             ?>
         </div>
     </div>
-
+    <br>
+    <br>
+    <br>
     <footer>
         <?php include 'Nav/footer.php'; ?>
     </footer>
