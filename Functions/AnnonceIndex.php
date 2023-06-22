@@ -25,6 +25,7 @@ function AnnonceIndex()
             echo "<br>";
             echo "<p>Prix de départ : €" . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
+            echo "<br>";
             echo "<button class= \"btn\"><a href=\"/BestBids/login.php\">Détails</a></button>";
             echo "</div>";
         }
