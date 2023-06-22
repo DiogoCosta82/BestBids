@@ -2,12 +2,17 @@
   margin: auto;
 }
 
+form {
+  position: absolute;
+  margin-top: 21vw;
+  margin-left: 75rem;
+}
+
 .card {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 16rem;
 }
 
 .card {
@@ -66,4 +71,15 @@ h2 {
   margin-top: 0;
   margin-left: -3rem;
   line-height: 2em;
+}
+
+.btn2 {
+  border: 3px #3498db solid 2px;
+  background: radial-gradient(#41aff9, #2b2b2d);
+  color: black;
+  width: 100px;
+  height: 36px;
+  border-radius: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
