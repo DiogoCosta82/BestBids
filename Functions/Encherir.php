@@ -1,53 +1,62 @@
 <?php
 require_once __DIR__ . '/AnnonceDetail.php';
+require_once __DIR__ . '/../Class/newBid.class.php';
+require_once __DIR__ . '/../Class/newCar.class.php';
 
-function Encherir($reserve_price)
+function Encherir($id_auction, $dbh)
 {
-    // 1 - Vérifier si l'utilisateur est déjà connecté
-    if (!isset($_SESSION["newUser"])) {
-        // Afficher un message d'erreur
-        echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
-        return; // Fin
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
     }
 
-    // 2 - PDO FETCH - pour récupérer le prix de départ et créer l'input
-    try {
-        $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
-        $query = $dbh->prepare('SELECT * FROM auctions WHERE reserve_price = :reserve_price ');
-        $query->bindParam(':reserve_price', $reserve_price);
-        $query->execute();
-        $reserve_price = $query->fetch();
+    // Vérifier si l'utilisateur est déjà connecté
+    if (!isset($_SESSION["newUser"])) {
+        echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
+        return;
+    }
 
-        // 3- Création du formulaire pour enchérir
-        echo "<form method='POST'>
-            <div>
-                <li>Votre enchère : <input type='number' name='amount'></li>
-                <br>
-                <button type='submit'>Enchérir</button>
-            </div>
-        </form>";
+    try {
+        try {
+            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+        } catch (Exception $e) {
+            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+        }
     } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
+        // Gérer les erreurs de connexion à la db
+        echo "Une erreur s'est produite lors de la connexion à la base de données. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
         die();
     }
 
-    // 3 - POST de l'INPUT selon le name 'amount'
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["amount"])) {
-        // Récupérer les données de formulaire
+    // Vérifier si l'annonce existe
+    $query = $dbh->prepare('SELECT * FROM auctions WHERE id_auction = :id_auction');
+    $query->execute(array(':id_auction' => $id_auction));
+    $auction = $query->fetch(PDO::FETCH_ASSOC);
+
+    if (!$auction) {
+        echo "L'annonce n'existe pas.";
+        return;
+    }
+
+    // Création du formulaire pour enchérir
+    echo "<form method='POST'>
+        <div>
+            <input type='hidden' name='id_auction' value='" . $id_auction . "'>
+            <span>Votre enchère : <input type='number' name='amount'></span>
+            <br>
+            <button type='submit'>Enchérir</button>
+        </div>
+    </form>";
+
+    // Traitement du formulaire
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $id_auction = $_POST["id_auction"];
+        $id_user = $_SESSION["newUser"]["id_user"];
         $amount = $_POST["amount"];
 
-        //PDO - INSERT - enregistrement du amount dans la table Bids
-        $query = $dbh->prepare("INSERT INTO `bids` (`amount`) VALUES (:amount)");
-        $query->bindParam(":amount", $amount);
-        $query->execute();
+        // Enregistrement de l'enchère dans la table bids
+        $newBid = new newBid($id_auction, $id_user, $amount, date("Y-m-d"), 0);
+        $newBid->save($dbh);
 
-        //PDO - UPDATE - changement du prix_depart dans le tableau auctions
-        $query = $dbh->prepare("UPDATE `auctions` SET amount = :amount WHERE reserve_price = :reserve_price");
-        $query->bindParam(":amount", $amount);
-        $query->bindParam(":reserve_price", $reserve_price["reserve_price"]);
-        $query->execute();
-
-        // On affiche un message de confirmation
         echo "Votre enchère est bien enregistrée !";
     }
 }
