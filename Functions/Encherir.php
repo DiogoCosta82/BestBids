@@ -38,14 +38,13 @@ function Encherir($id_auction, $dbh)
     }
 
     // Création du formulaire pour enchérir
-    echo "<form method='POST'>
-        <div>
-            <input type='hidden' name='id_auction' value='" . $id_auction . "'>
-            <span>Votre enchère : <input type='number' name='amount'></span>
-            <br>
-            <button type='submit'>Enchérir</button>
-        </div>
-    </form>";
+    echo "<form method='POST'>";
+    echo "<div>";
+    echo "<input type='hidden' name='id_auction' value='" . $id_auction . "'>";
+    echo "<span>Votre enchère : <input type='number' name='amount'></span>";
+    echo "<button type='submit'>Enchérir</button>";
+    echo "</div>";
+    echo "</form>";
 
     // Traitement du formulaire
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
