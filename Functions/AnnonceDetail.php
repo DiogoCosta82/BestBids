@@ -35,7 +35,7 @@ function AnnonceDetail()
             echo "<p>Marque : " . $auction['brand'] . "</p>";
             echo "<p>Modèle : " . $auction['model'] . "</p>";
             echo "<p>Puissance : " . $auction['hp'] . "</p>";
-            echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
+            echo "<p>Prix de départ : €" . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
             echo "<p>Description : " . $auction['description'] . "</p>";
             echo "<button class= \"btn\"><a href=\"/BestBids/annonce_affiche.php\">Retour</a></button>";

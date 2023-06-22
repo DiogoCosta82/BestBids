@@ -23,7 +23,7 @@ function AnnonceIndex()
             echo "<p>Marque : " . $auction['brand'] . "</p>";
             echo "<p>Modèle: " . $auction['model'] . "</p>";
             echo "<br>";
-            echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
+            echo "<p>Prix de départ : €" . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
             echo "<button class= \"btn\"><a href=\"/BestBids/login.php\">Détails</a></button>";
             echo "</div>";

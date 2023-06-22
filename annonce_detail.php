@@ -1,60 +1,72 @@
 <?php
-include __DIR__ . '/Nav/menu.php';
-require_once __DIR__ . '/Class/newCar.class.php';
-include __DIR__ . '/Functions/AnnonceDetail.php';
-require_once __DIR__ . '/Functions/Encherir.php';
 
-?>
+require_once __DIR__ . '/../Class/newBid.class.php';
 
-<!DOCTYPE html>
-<html>
+function Encherir($id_auction)
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style/style.css" />
-    <link rel="stylesheet" href="Style/styleCardDetail.css" />
-    <title>Best Bid's</title>
+    // Vérifier si l'utilisateur est déjà connecté
+    if (!isset($_SESSION["newUser"])) {
+        echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
+        return;
+    }
 
-</head>
+    try {
+        try {
+            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+        } catch (Exception $e) {
+            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
+        }
+    } catch (PDOException $e) {
+        // Gérer les erreurs de connexion à la db
+        echo "Une erreur s'est produite lors de la connexion à la base de données. Veuillez contacter l'administrateur du système. <br><br> Erreur : " . $e->getMessage();
+        die();
+    }
 
-<body>
-    <header>
-        <?php
-        $menu_liens = [
-            '/BestBids/annonce_affiche.php' => 'Retour',
-            '/BestBids/logout.php' => 'Déconnexion',
-        ];
+    // Vérifier si l'annonce existe
+    $query = $dbh->prepare('SELECT * FROM auctions WHERE id_auction = :id_auction');
+    $query->execute(array(':id_auction' => $id_auction));
+    $auction = $query->fetch(PDO::FETCH_ASSOC);
 
-        afficher_menu("", $menu_liens);
-        ?>
-    </header>
+    if (!$auction) {
+        echo "L'annonce n'existe pas.";
+        return;
+    }
 
-    <?php
-    // Afficher loading
-    echo "<div class=\"loading-overlay\">";
-    echo "<div class=\"loading-spinner\"></div>";
-    echo "</div>";
-    ?>
+    $auction = $query->fetch(PDO::FETCH_ASSOC);
 
-    <script>
-        // Cacher loading après un délai de 1200ms
-        setTimeout(function() {
-            document.querySelector('.loading-overlay').style.display = 'none';
-        }, 1200);
-    </script>
+    // Vérifier si date limite est dépassée
+    $currentDate = date("Y-m-d");
+    $end_date = $auction['end_date'];
 
-    <?php
-    $starting_price = null;
-    $reserve_price = 0; // Remplacez 0 par la valeur réelle de $reserve_price
+    if (strtotime($currentDate) > strtotime($end_date)) {
+        echo "La date limite d'enchère est dépassée.";
+        return;
+    }
 
-    AnnonceDetail();
-    Encherir($reserve_price);
-    ?>
+    // Création du formulaire pour enchérir
+    echo "<form method='POST'>
+        <div>
+            <input type='hidden' name='id_auction' value='" . $id_auction . "'>
+            <span>Votre enchère : <input type='number' name='amount'></span>
+            <br>
+            <button type='submit'>Enchérir</button>
+        </div>
+    </form>";
 
-    <footer>
-        <?php include 'Nav/footer.php'; ?>
-    </footer>
-</body>
+    // Traitement du formulaire
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $id_auction = $_POST["id_auction"];
+        $id_user = $_SESSION["newUser"]["id_user"];
+        $amount = $_POST["amount"];
 
-</html>
+        // Enregistrement de l'enchère dans la table bids
+        $newBid = new newBid($id_auction, $id_user, $amount, date("Y-m-d"), 0);
+        $newBid->save($dbh);
+
+        echo "Votre enchère est bien enregistrée !";
+    }
+}

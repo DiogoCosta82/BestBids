@@ -5,9 +5,9 @@ function AnnonceAffiche()
     try {
         // Connexion bd
         try {
-            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
-        } catch (Exception $e) {
             $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1", "root", "");
+        } catch (Exception $e) {
+            $dbh = new PDO("mysql:dbname=best_bids;host=127.0.0.1;port=8889", "root", "root");
         }
 
         // Récupération des annonces
@@ -16,6 +16,7 @@ function AnnonceAffiche()
         $results = $query->fetchAll();
 
         // Affichage des annonces
+
 
         echo "<div class=\"cards\">";
         foreach ($results as $auction) {
@@ -26,9 +27,9 @@ function AnnonceAffiche()
             echo "<p>Marque : " . $auction['brand'] . "</p>";
             echo "<p>Modèle: " . $auction['model'] . "</p>";
             echo "<br>";
-            echo "<p>Prix de départ : " . $auction['reserve_price'] . "</p>";
+            echo "<p>Prix de départ : €" . $auction['reserve_price'] . "</p>";
             echo "<p>Fin d'enchère : " . $auction['end_date'] . "</p>";
-            echo '<a href="annonce_detail.php?id=' . $auction['id_auction'] . '">Détails</a>';
+            echo '<button class=btn><a href="annonce_detail.php?id=' . $auction['id_auction'] . '">Détails</a></button>';
             echo "</div>";
         }
 
