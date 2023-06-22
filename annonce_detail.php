@@ -1,17 +1,38 @@
 <?php
+include __DIR__ . '/Nav/menu.php';
+require_once __DIR__ . '/Class/newCar.class.php';
+include __DIR__ . '/Functions/AnnonceDetail.php';
+require_once __DIR__ . '/Functions/Encherir.php';
 
-require_once __DIR__ . '/../Class/newBid.class.php';
+?>
 
-function Encherir($id_auction)
-{
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style/style.css" />
+    <link rel="stylesheet" href="Style/styleCardDetail.css" />
+    <title>Best Bid's</title>
+
+</head>
+
+<body>
+    <header>
+        <?php
+        $menu_liens = [
+            '/BestBids/annonce_affiche.php' => 'Retour',
+            '/BestBids/logout.php' => 'Déconnexion',
+        ];
+
+        afficher_menu("", $menu_liens);
+        ?>
+    </header>
+
+    <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    }
-
-    // Vérifier si l'utilisateur est déjà connecté
-    if (!isset($_SESSION["newUser"])) {
-        echo "Impossible d'enchérir, vous n'êtes pas connecté(e) !";
-        return;
     }
 
     try {
@@ -26,47 +47,48 @@ function Encherir($id_auction)
         die();
     }
 
-    // Vérifier si l'annonce existe
-    $query = $dbh->prepare('SELECT * FROM auctions WHERE id_auction = :id_auction');
-    $query->execute(array(':id_auction' => $id_auction));
-    $auction = $query->fetch(PDO::FETCH_ASSOC);
+    // Afficher loading
+    echo "<div class=\"loading-overlay\">";
+    echo "<div class=\"loading-spinner\"></div>";
+    echo "</div>";
 
-    if (!$auction) {
-        echo "L'annonce n'existe pas.";
-        return;
+    // Cacher loading après un délai de 1200ms
+    echo "<script>
+        setTimeout(function() {
+            document.querySelector('.loading-overlay').style.display = 'none';
+        }, 1200);
+    </script>";
+
+    // Vérifier si l'identifiant de l'annonce est présent dans l'URL
+    if (isset($_GET['id'])) {
+        $id_auction = $_GET['id'];
+
+        // Appeler la fonction Encherir avec l'identifiant de l'annonce
+        Encherir($id_auction, $dbh);
+
+        // Vérifier si la date limite est dépassée et afficher le nom du gagnant
+        $query = $dbh->prepare('SELECT * FROM auctions WHERE id_auction = :id_auction');
+        $query->execute(array(':id_auction' => $id_auction));
+        $auction = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($auction && strtotime(date("Y-m-d")) > strtotime($auction['end_date'])) {
+            $newBid = new newBid($id_auction, "", "", "", 0);
+            $winnerName = $newBid->getWinnerName($dbh);
+
+            if (!empty($winnerName)) {
+                echo "<p>Le gagnant de cette enchère est : " . $winnerName . "</p>";
+            }
+        }
+    } else {
+        echo "L'identifiant de l'annonce n'est pas spécifié dans l'URL.";
     }
 
-    $auction = $query->fetch(PDO::FETCH_ASSOC);
+    AnnonceDetail();
+    ?>
 
-    // Vérifier si date limite est dépassée
-    $currentDate = date("Y-m-d");
-    $end_date = $auction['end_date'];
+    <footer>
+        <?php include 'Nav/footer.php'; ?>
+    </footer>
+</body>
 
-    if (strtotime($currentDate) > strtotime($end_date)) {
-        echo "La date limite d'enchère est dépassée.";
-        return;
-    }
-
-    // Création du formulaire pour enchérir
-    echo "<form method='POST'>
-        <div>
-            <input type='hidden' name='id_auction' value='" . $id_auction . "'>
-            <span>Votre enchère : <input type='number' name='amount'></span>
-            <br>
-            <button type='submit'>Enchérir</button>
-        </div>
-    </form>";
-
-    // Traitement du formulaire
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $id_auction = $_POST["id_auction"];
-        $id_user = $_SESSION["newUser"]["id_user"];
-        $amount = $_POST["amount"];
-
-        // Enregistrement de l'enchère dans la table bids
-        $newBid = new newBid($id_auction, $id_user, $amount, date("Y-m-d"), 0);
-        $newBid->save($dbh);
-
-        echo "Votre enchère est bien enregistrée !";
-    }
-}
+</html>
